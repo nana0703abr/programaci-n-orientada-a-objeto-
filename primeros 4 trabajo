@@ -1,0 +1,209 @@
+EJERCIO 1 
+class Libro:
+    def __init__(self, titulo, autor, paginas):
+        """Constructor para inicializar los atributos del libro"""
+        self.titulo = titulo
+        self.autor = autor
+        self.paginas = paginas
+
+    def mostrar_informacion(self):
+        """Método para imprimir los detalles del libro"""
+        print(f"--- Información del Libro ---")
+        print(f"Título: {self.titulo}")
+        print(f"Autor: {self.autor}")
+        print(f"Número de páginas: {self.paginas}")
+        print("-----------------------------")
+
+    def actualizar_paginas(self, nuevas_paginas):
+        """Método para modificar el número de páginas"""
+        if nuevas_paginas > 0:
+            self.paginas = nuevas_paginas
+            print(f"¡Páginas actualizadas con éxito a {nuevas_paginas}!")
+        else:
+            print("Error: El número de páginas debe ser mayor a cero.")
+
+# --- Ejemplo de uso ---
+
+# 1. Crear un objeto (instancia) de la clase Libro
+mi_libro = Libro("Cien años de soledad", "Gabriel García Márquez", 496)
+
+# 2. Mostrar la información inicial
+mi_libro.mostrar_informacion()
+
+# 3. Actualizar el número de páginas
+mi_libro.actualizar_paginas(550)
+
+# 4. Mostrar la información actualizada
+mi_libro.mostrar_informacion()
+
+
+
+
+
+EJERCIO 2  
+class Estudiante:
+    def __init__(self, nombre, edad, calificacion):
+        """Constructor para inicializar los atributos del estudiante."""
+        self.nombre = nombre
+        self.edad = edad
+        self.calificacion = calificacion
+
+    def verificar_estado(self):
+        """Determina si el estudiante aprobó o reprobó."""
+        if self.calificacion >= 60:
+            return "Aprobado"
+        else:
+            return "Reprobado"
+
+    def mostrar_informacion(self):
+        """Muestra los detalles del estudiante de forma organizada."""
+        estado = self.verificar_estado()
+        print(f"--- Ficha del Estudiante ---")
+        print(f"Nombre: {self.nombre}")
+        print(f"Edad:   {self.edad} años")
+        print(f"Nota:   {self.calificacion}")
+        print(f"Estado: {estado}")
+        print("-" * 28)
+
+# --- Ejemplo de aplicación en el aula ---
+
+# Creamos un par de instancias (objetos) de la clase Estudiante
+estudiante1 = Estudiante("Ana García", 20, 85)
+estudiante2 = Estudiante("Luis Pérez", 22, 45)
+
+# Ejecutamos los métodos
+estudiante1.mostrar_informacion()
+estudiante2.mostrar_informacion()
+
+
+
+
+
+
+
+EJERCIO 3class Producto:
+    def __init__(self, nombre, precio, stock):
+        self.nombre = nombre
+        self.precio = precio
+        self.stock = stock
+
+    def verificar_disponibilidad(self, cantidad):
+        return self.stock >= cantidad
+
+    def vender(self, cantidad):
+        if self.verificar_disponibilidad(cantidad):
+            self.stock -= cantidad
+            print(f"Venta exitosa: Se vendieron {cantidad} unidades de {self.nombre}.")
+        else:
+            print(f"Error: No hay suficiente stock de {self.nombre} para vender {cantidad} unidades.")
+
+    def reabastecer(self, cantidad):
+        self.stock += cantidad
+        print(f"Reabastecimiento: Se han añadido {cantidad} unidades. Nuevo stock: {self.stock}.")
+
+# --- Ejecución de las operaciones solicitadas ---
+
+# 1. Crear el objeto Producto
+mi_laptop = Producto("Laptop", 1200, 10)
+print(f"Producto creado: {mi_laptop.nombre} | Precio: ${mi_laptop.precio} | Stock inicial: {mi_laptop.stock}")
+print("-" * 50)
+
+# 2. Verificar si hay 5 unidades disponibles
+hay_5 = mi_laptop.verificar_disponibilidad(5)
+print(f"¿Hay 5 unidades disponibles?: {'Sí' if hay_5 else 'No'}")
+
+# 3. Vender 3 unidades
+mi_laptop.vender(3)
+
+# 4. Verificar si hay 8 unidades disponibles
+hay_8 = mi_laptop.verificar_disponibilidad(8)
+print(f"¿Hay 8 unidades disponibles?: {'Sí' if hay_8 else 'No'}")
+
+# 5. Intentar vender 8 unidades (debe fallar porque quedan 7)
+mi_laptop.vender(8)
+
+# 6. Reabastecer con 10 unidades adicionales
+mi_laptop.reabastecer(10)
+
+# 7. Verificar nuevamente si hay 8 unidades disponibles
+hay_8_bis = mi_laptop.verificar_disponibilidad(8)
+print(f"¿Hay ahora 8 unidades disponibles?: {'Sí' if hay_8_bis else 'No'}")
+
+# 8. Vender 8 unidades
+mi_laptop.vender(8)
+
+# Stock final
+print("-" * 50)
+print(f"Stock final de {mi_laptop.nombre}: {mi_laptop.stock}")
+
+
+
+
+
+
+EJERCIO 4
+class Vehiculo:
+    def __init__(self, marca, modelo, velocidad_maxima):
+        self.marca = marca
+        self.modelo = modelo
+        self.velocidad_maxima = velocidad_maxima
+        self.velocidad_actual = 0
+
+    def acelerar(self, incremento):
+        if self.velocidad_actual + incremento <= self.velocidad_maxima:
+            self.velocidad_actual += incremento
+        else:
+            self.velocidad_actual = self.velocidad_maxima
+        print(f"Velocidad actual: {self.velocidad_actual} km/h")
+
+    def frenar(self, decremento):
+        if self.velocidad_actual - decremento >= 0:
+            self.velocidad_actual -= decremento
+        else:
+            self.velocidad_actual = 0
+        print(f"Velocidad actual: {self.velocidad_actual} km/h")
+
+    def verificar_limite(self, velocidad_limite):
+        if self.velocidad_actual > velocidad_limite:
+            print(f"⚠️ ¡ALERTA! El vehículo excede el límite de {velocidad_limite} km/h.")
+        else:
+            print(f"✅ El vehículo circula dentro del límite de {velocidad_limite} km/h.")
+
+def mostrar_menu():
+    print("\n--- SISTEMA DE MONITOREO DE AUTOPISTA ---")
+    print("1. Acelerar")
+    print("2. Frenar")
+    print("3. Verificar límite de velocidad")
+    print("4. Salir")
+    return input("Seleccione una opción: ")
+
+# --- Programa Principal ---
+if __name__ == "__main__":
+    # Inicialización del vehículo
+    marca = input("Ingrese la marca del vehículo: ")
+    modelo = input("Ingrese el modelo del vehículo: ")
+    v_max = float(input("Ingrese la velocidad máxima permitida del vehículo: "))
+    
+    mi_auto = Vehiculo(marca, modelo, v_max)
+
+    while True:
+        opcion = mostrar_menu()
+
+        if opcion == "1":
+            inc = float(input("¿Cuánto desea acelerar?: "))
+            mi_auto.acelerar(inc)
+        
+        elif opcion == "2":
+            dec = float(input("¿Cuánto desea frenar?: "))
+            mi_auto.frenar(dec)
+            
+        elif opcion == "3":
+            lim = float(input("Ingrese el límite de velocidad de la vía: "))
+            mi_auto.verificar_limite(lim)
+            
+        elif opcion == "4":
+            print("Saliendo del sistema...")
+            break
+        
+        else:
+print("Opción no válida, intente de nuevo.")
