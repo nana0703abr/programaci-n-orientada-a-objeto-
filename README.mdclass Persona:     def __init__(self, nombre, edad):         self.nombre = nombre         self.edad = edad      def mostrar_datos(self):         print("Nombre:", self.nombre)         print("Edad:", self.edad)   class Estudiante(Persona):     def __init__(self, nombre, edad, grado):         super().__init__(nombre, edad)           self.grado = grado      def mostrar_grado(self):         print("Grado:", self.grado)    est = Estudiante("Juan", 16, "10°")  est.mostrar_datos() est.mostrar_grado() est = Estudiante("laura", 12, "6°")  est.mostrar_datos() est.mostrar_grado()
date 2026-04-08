@@ -1,0 +1,28 @@
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+
+    def mostrar_datos(self):
+        print("Nombre:", self.nombre)
+        print("Edad:", self.edad)
+
+
+class Estudiante(Persona):
+    def __init__(self, nombre, edad, grado):
+        super().__init__(nombre, edad)  
+        self.grado = grado
+
+    def mostrar_grado(self):
+        print("Grado:", self.grado)
+
+
+
+est = Estudiante("Juan", 16, "10°")
+
+est.mostrar_datos()
+est.mostrar_grado()
+est = Estudiante("laura", 12, "6°")
+
+est.mostrar_datos()
+est.mostrar_grado()
