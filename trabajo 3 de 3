@@ -1,0 +1,23 @@
+class Animal:
+    def __init__(self, nombre, especie):
+        self.nombre = nombre
+        self.especie = especie
+
+    def mostrar_animal(self):
+        print("Nombre:", self.nombre)
+        print("Especie:", self.especie)
+
+
+class Perro(Animal):
+    def __init__(self, nombre, especie, raza):
+        super().__init__(nombre, especie)  
+        self.raza = raza
+
+    def mostrar_raza(self):
+        print("Raza:", self.raza)
+
+
+mi_perro = Perro("Max", "Canino", "Labrador")
+
+mi_perro.mostrar_animal()
+mi_perro.mostrar_raza()
